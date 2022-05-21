@@ -5,5 +5,12 @@
 	} 
 
 	define('ALLOW_FOOTER', true);
+	
 	// Our config file is below
+
+
+	// Include the DB.php file
+	include_once "classes/DB.php";
+
+	$con = DB::getConnection();
 ?>

@@ -64,9 +64,13 @@
 				?>
 				<p>
 					<a href="<?php echo $base_sites; ?>login.php">Login</a>
+					<a href="login.php">Login</a>
 					<a href="http://localhost/~franciscomontecillo/php_login/login.php">Login</a>
+
 					<a href="<?php echo $base_sites; ?>register.php">Register</a>
+					<a href="register.php">Register</a>
 					<a href="http://localhost/~franciscomontecillo/php_login/register.php">Register</a>
+
 				</p>
 			</div>
 
