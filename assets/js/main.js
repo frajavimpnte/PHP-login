@@ -28,7 +28,7 @@ $(document)
 	//alert('form was submitted');
 	//console.log(dataObj);
 
-	_error.hide();
+	
 
 
 	//ajax
@@ -44,17 +44,24 @@ $(document)
 		console.log(data);
 		if (data.redirect !== undefined) {
 			//window.location = data.redirect;
+		} else if (data.error !== undefined ) {
+			_error
+				.text(data.error)
+				.show();
 		}
-		alert(data.name);
+		//For DEBUG
+		//alert(data.name);
 	})
 	.fail(function ajaxFailed(e) {
 		// This failed
-		console.log(e);
+		//console.log(e);
 	})
 	.always(function ajaxAlwaysDoThis(data) {
 		// Always do
-		console.log('Always');
+		//console.log('Always');
 	});
+
+	_error.hide();
 
 	return false;
 })
