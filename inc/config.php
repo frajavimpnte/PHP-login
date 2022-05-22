@@ -4,6 +4,12 @@
 		exit('You do not hava a config file');
 	} 
 
+	// Sessions are always turned on
+	if (!isset($_SESSION)) {
+		session_start();
+	}
+
+
 	define('ALLOW_FOOTER', true);
 	
 	// Our config file is below

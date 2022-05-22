@@ -20,36 +20,35 @@
 
 		// Make sure the user does not exits. We have access to Filter because of Config
 		$email = Filter::String( $_POST['email'] );
-		//$email = strtolower($email);  // Let's mysql do it.
+		$password = $_POST['password'];
 
 		// Make sure the user CAN be added AND is added
 		// we have access to $con because of CONFIF
-		$findUser = $con->prepare("SELECT user_id FROM users WHERE email = LOWER(:email) LIMIT 1"); // LIMIT 1 is because there will be millios of
+		$findUser = $con->prepare("SELECT user_id, password FROM users WHERE email = LOWER(:email) LIMIT 1"); // LIMIT 1 is because there will be millios of
 		$findUser->bindParam(':email', $email, PDO::PARAM_STR);
 		$findUser->execute();
 
 		if ($findUser->rowCount() == 1) {
-			// User exists
-			// We can also check to see if they are able to log in.
+			// User exists, try and sign then in
+			$User = $findUser->fetch(PDO::FETCH_ASSOC);
+
+			$user_id = (int) $User['user_id'];
+			$hash = (string) $User['password'];
+
+			if (password_verify($password, $hash)) {
+				// User is signed in
+				$return['redirect'] = '/dashboard.php';
+
+				$_SESSION['user_id'] = $user_id;
+			} else {
+				// Invalid user email/password combo
+				$return['error'] = "Invalid user email/password combo";
+			}
+
 			$return['error'] = "You already have an account.";
-			$return['is_logged_in'] = false;
 		} else {
-			// User does not exists, add then now.
-
-			// create a hash
-			$password = password_hash($_POST['password'], PASSWORD_DEFAULT);
-
-			$addUser = $con->prepare("INSERT INTO users(email, password) VALUES (LOWER(:email), :password)");
-			$addUser->bindParam(':email', $email, PDO::PARAM_STR);
-			$addUser->bindParam(':password', $password, PDO::PARAM_STR);
-			$addUser->execute();
-
-			// add session PHP
-			$user_id = $con->lastInsertId();
-			$_SESSION['user_id'] = (int) $user_id;
-
-			$return['redirect'] = '/dashboard.php?message=welcome';
-			$return['is_logged_in'] = true;
+			// User does not exists
+			$return['error'] = "You do not have an account. <a href='/regiester.php'>Create one now?</a>";
 		}
 
 		// Return the proper information to JavaScript to redirect us
