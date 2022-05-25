@@ -7,6 +7,8 @@
 	// Require the config
 	require_once "../inc/config.php";
 
+	ForceDashboard()
+
 	// TO DEBUG or DEMOSTRATE HASH
 	//$pass = "hello my name is asdasdfasdfasd";
 	//echo $pass . " <hr />";

@@ -6,11 +6,12 @@
 	require_once "inc/config.php";
 
 
+	ForceLogin();
     // Dashboard: Login
-	echo $_SESSION['user_id'] . ' is your user id';
-	exit;
+	//echo $_SESSION['user_id'] . ' is your user id';
+	//exit;
 
-
+/*
 	//esta da el localhost por default de apache
 	$httpProtocol = !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? 'http' : 'https';
 	$base = $httpProtocol .'://'.$_SERVER['HTTP_HOST'].'/';
@@ -42,6 +43,7 @@
     echo '</br>';
 
     //$base_sites = $base . 
+    */
 
 ?>
 
@@ -61,7 +63,7 @@
 
 	<body>
 		<div class="uk-section uk-container">
-			
+			Dashboard here!!!	You are signed in as user: <?php echo $_SESSION['user_id']; ?>
 		</div>
 
 		<?php require_once "inc/footer.php"; ?>
