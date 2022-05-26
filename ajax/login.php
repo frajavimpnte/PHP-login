@@ -50,7 +50,7 @@
 			$return['error'] = "You already have an account.";
 		} else {
 			// User does not exists
-			$return['error'] = "You do not have an account. <a href='/regiester.php'>Create one now?</a>";
+			$return['error'] = "You do not have an account. <a href='/register.php'>Create one now?</a>";
 		}
 
 		// Return the proper information to JavaScript to redirect us

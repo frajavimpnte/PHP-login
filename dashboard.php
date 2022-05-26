@@ -7,6 +7,11 @@
 
 
 	ForceLogin();
+
+	echo 'sesion antes: </br>';
+	print_r($_SESSION);
+	echo '</br>';
+	
     // Dashboard: Login
 	//echo $_SESSION['user_id'] . ' is your user id';
 	//exit;

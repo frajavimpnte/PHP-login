@@ -5,6 +5,8 @@
 	// Require the config
 	require_once "inc/config.php";
 
+	ForceDashboard();
+
 	//esta da el localhost por default de apache
 	$httpProtocol = !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? 'http' : 'https';
 	$base = $httpProtocol .'://'.$_SERVER['HTTP_HOST'];   // . '/';
