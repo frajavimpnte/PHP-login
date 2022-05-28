@@ -9,12 +9,6 @@
 
 	ForceDashboard();
 
-	// TO DEBUG or DEMOSTRATE HASH
-	//$pass = "hello my name is asdasdfasdfasd";
-	//echo $pass . " <hr />";
-	//$password = password_hash($pass, PASSWORD_DEFAULT);
-	//echo $password;
-
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		//header('Content-Type: application/json');
 
@@ -26,11 +20,9 @@
 
 		// Make sure the user CAN be added AND is added
 		// we have access to $con because of CONFIF
-		$findUser = $con->prepare("SELECT user_id FROM users WHERE email = LOWER(:email) LIMIT 1"); // LIMIT 1 is because there will be millios of
-		$findUser->bindParam(':email', $email, PDO::PARAM_STR);
-		$findUser->execute();
+		$user_found = User:::Find( $email);
 
-		if ($findUser->rowCount() == 1) {
+		if ($user_found) {
 			// User exists
 			// We can also check to see if they are able to log in.
 			$return['error'] = "You already have an account.";
@@ -55,15 +47,8 @@
 		}
 
 		// Return the proper information to JavaScript to redirect us
-		
-		// FOR DEBUG
-		//$return['redirect'] = '/index.php?this-was-a-redirect';
-		//$return['redirect'] = '/dashboard.php';
+	
 		$return['name'] = "Kalob Taulien";
-
-		// TO DEBUG
-		//$array = ['test', 'test2', 'test3', array('name' => 'Kalob', 'lastname' => 'Taulien')];
-		//echo json_encode($array, JSON_PRETTY_PRINT);
 
 		echo json_encode($return, JSON_PRETTY_PRINT);
 		exit;  // som donr like, because stops scripts 

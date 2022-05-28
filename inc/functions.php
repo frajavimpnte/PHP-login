@@ -1,4 +1,5 @@
 <?php
+/*
 // Force the user to be logged in or redirect.
 function ForceLogin() {
 	if (isset($_SESSION['user_id'])) {
@@ -18,4 +19,6 @@ function ForceDashboard() {
 		
 	}
 }
+*/
+
 ?>

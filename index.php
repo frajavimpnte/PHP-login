@@ -5,40 +5,8 @@
 	// Require the config
 	require_once "inc/config.php";
 
-	ForceDashboard();
+	Page::ForceDashboard();
 
-	//esta da el localhost por default de apache
-	$httpProtocol = !isset($_SERVER['HTTPS']) || $_SERVER['HTTPS'] != 'on' ? 'http' : 'https';
-	$base = $httpProtocol .'://'.$_SERVER['HTTP_HOST'];   // . '/';
-	echo 'base: ' . $base;
-	echo '</br>';
-
-
-
-	$dir = __DIR__ . '/';
-	echo '__DIR__:' . $dir;
-	echo '</br>';
-
-	$domain = $_SERVER['HTTP_HOST'];
-	$request_uri = $_SERVER['REQUEST_URI'];
-    $path = explode('?', $_SERVER['REQUEST_URI'])[0];
-    $method = $_SERVER['REQUEST_METHOD'];
-
-    echo "domain: " . $domain;
-    echo '</br>';
-
-
-    echo "request_uri: " . $request_uri ;
-    echo '</br>';
-    
-    echo "path: " . $path;
-    echo '</br>';
-
-    echo "method: " . $method;
-    echo '</br>';
-
-    $base_sites = $base . $path;
-    echo "base_sites: " . $base_sites; 
 ?>
 
 <!DOCTYPE html>
@@ -65,14 +33,8 @@
 					echo '<br/>';
 				?>
 				<p>
-					<a href="<?php echo $base_sites; ?>login.php">Login</a>
 					<a href="login.php">Login</a>
-					<a href="http://localhost/~franciscomontecillo/php_login/login.php">Login</a>
-
-					<a href="<?php echo $base_sites; ?>register.php">Register</a>
 					<a href="register.php">Register</a>
-					<a href="http://localhost/~franciscomontecillo/php_login/register.php">Register</a>
-
 				</p>
 			</div>
 

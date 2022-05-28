@@ -27,7 +27,7 @@ class Filter
 	}
 
 	public static function Int ( $integer ) {
-		return (int) $integer = filter_vat( $integer , FILTER_SANITEIZE_NUMBER_INT);
+		return (int) $integer = filter_var( $integer , FILTER_SANITIZE_NUMBER_INT);
 	}
 
 }
